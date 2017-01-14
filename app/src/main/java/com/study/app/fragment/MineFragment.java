@@ -20,19 +20,20 @@ import com.study.app.views.ShowingPage;
  */
 
 public class MineFragment extends BaseFragment {
+
     @Override
-    protected void onLoad() {
-        int netWorkType = NetUtils.getNetWorkType(getActivity());
-        LogUtils.i("TAG", "--------------------" + netWorkType);
-        if (netWorkType == NetUtils.NETWORKTYPE_INVALID) {
-//            ToastUtil.show(getActivity(),"没网了");
-            this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
-        }
+    protected void createTitleView(ShowingPage showingPage) {
+
+    }
+
+    @Override
+    protected boolean isNeedTitle() {
+        return false;
     }
 
     @Override
     protected View createSuccessView() {
-        View view = CommonUtils.inflate(R.layout.fragment_home);
+        View view = CommonUtils.inflate(R.layout.fragment_mine);
         Button needNet = (Button) view.findViewById(R.id.needNet);
         Button noNet = (Button) view.findViewById(R.id.noNet);
         needNet.setOnClickListener(new View.OnClickListener() {
@@ -49,5 +50,11 @@ public class MineFragment extends BaseFragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showingPage.setCurrentState(ShowingPage.StateType.STATE_LOAD_SUCCESS);
     }
 }

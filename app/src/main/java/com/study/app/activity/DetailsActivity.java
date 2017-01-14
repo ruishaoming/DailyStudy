@@ -1,5 +1,6 @@
 package com.study.app.activity;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.Toast;
 import com.study.app.R;
 import com.study.app.base.BaseData;
 import com.study.app.base.BaseShowingPageActivity;
+import com.study.app.designs.TitleBuilder;
 import com.study.app.fragment.QuanFragment;
 import com.study.app.interfaces.ICallback;
+import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.views.ShowingPage;
 
 /**
@@ -20,6 +23,7 @@ import com.study.app.views.ShowingPage;
 public class DetailsActivity extends BaseShowingPageActivity {
 
     private String responseInfo;
+    private TextView textView;
 
     @Override
     protected void onLoad() {
@@ -28,20 +32,31 @@ public class DetailsActivity extends BaseShowingPageActivity {
             @Override
             public void onResponse(String responseInfo) {
                 DetailsActivity.this.responseInfo = responseInfo;
-                showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
+                textView.setText("DetailsActivity::::::::：" + responseInfo);
+                DetailsActivity.this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
             }
 
             @Override
             public void onFailure(String errorInfo) {
-                Toast.makeText(DetailsActivity.this, "DetailsActivity::::" + errorInfo, Toast.LENGTH_SHORT).show();
+                DetailsActivity.this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
+            }
+        });
+    }
+
+    @Override
+    protected void createTitleView() {
+        new TitleBuilder(showingPage).setTitleBackGroundColor(Color.RED).setLeftImageRes(R.mipmap.btn_back).setLeftImageListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
 
     @Override
     protected View createSuccessView() {
-        TextView textView = new TextView(this);
-        textView.setText("DetailsActivity::::::::：" + responseInfo);
+        textView = new TextView(this);
         return textView;
     }
+
 }

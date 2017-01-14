@@ -1,15 +1,24 @@
 package com.study.app.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.study.app.R;
 import com.study.app.application.MyApplication;
 import com.study.app.base.BaseData;
 import com.study.app.base.BaseFragment;
+import com.study.app.designs.TitleBuilder;
 import com.study.app.interfaces.ICallback;
 import com.study.app.interfaces.IOnResetShowingPage;
+import com.study.app.utils.CommonUtils;
 import com.study.app.utils.NetUtils;
 import com.study.app.views.ShowingPage;
 
@@ -21,6 +30,7 @@ import com.study.app.views.ShowingPage;
 public class QuanFragment extends BaseFragment {
     private String responseInfo;
     private boolean CourseFragment_isOnline = true;
+    private TextView textView;
 
     @Override
     public void onAttach(Context context) {
@@ -31,7 +41,16 @@ public class QuanFragment extends BaseFragment {
     }
 
     @Override
-    protected void onLoad() {
+    protected View createSuccessView() {
+        textView = new TextView(getActivity());
+        return textView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+        //重新加载的监听
         showingPage.setIOnResetShowingPage(new IOnResetShowingPage() {
             @Override
             public void onReset(View v) {
@@ -39,14 +58,17 @@ public class QuanFragment extends BaseFragment {
                 initData();
             }
         });
-        initData();
     }
 
     @Override
-    protected View createSuccessView() {
-        TextView textView = new TextView(getActivity());
-        textView.setText("圈子：" + responseInfo);
-        return textView;
+    protected void createTitleView(ShowingPage showingPage) {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.title_quan, null);
+        new TitleBuilder(showingPage).createSelfTitleView(view).build();
+    }
+
+    @Override
+    protected boolean isNeedTitle() {
+        return true;
     }
 
     private void initData() {
@@ -57,6 +79,7 @@ public class QuanFragment extends BaseFragment {
                 @Override
                 public void onResponse(String responseInfo) {
                     QuanFragment.this.responseInfo = responseInfo;
+                    textView.setText("我是圈子：" + responseInfo);
                     showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
                 }
 
@@ -65,7 +88,7 @@ public class QuanFragment extends BaseFragment {
                     Toast.makeText(getActivity(), "失败" + errorInfo, Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
+        } else {
             this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
         }
     }

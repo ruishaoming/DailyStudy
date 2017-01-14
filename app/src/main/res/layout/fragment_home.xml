@@ -5,4 +5,170 @@
     android:orientation="vertical">
 
 
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/home_fragment_springView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/convenientBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="400px"
+                    app:canLoop="true"
+                    />
+
+                <com.study.app.views.MyGridView
+                    android:id="@+id/myGrideView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400px"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/gray"
+                    android:numColumns="3">
+
+                </com.study.app.views.MyGridView>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="420px"
+
+                    android:orientation="horizontal">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/idea_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:textColor="@color/main_bottom_tv_check"
+                            android:textSize="@dimen/main_activity_bottom_tv"
+                            android:layout_marginLeft="20px"/>
+
+                        <TextView
+                            android:id="@+id/idea_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20px"
+                            android:textColor="@color/main_bottom_tv_normal" />
+
+                        <ImageView
+                            android:id="@+id/idea_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
+
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <TextView
+                        android:layout_width="1px"
+                        android:layout_height="420px"
+                        android:background="@color/gray" />
+
+                    <com.study.app.views.MyGridView
+                        android:id="@+id/gv"
+                        android:layout_width="0px"
+                        android:layout_height="420px"
+                        android:horizontalSpacing="1px"
+                        android:verticalSpacing="1px"
+                        android:layout_weight="1"></com.study.app.views.MyGridView>
+
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_marginTop="20px">
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="20px">
+                        <ImageView
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:src="@mipmap/hot"
+                            android:layout_gravity="center_vertical"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="热门课程"
+                            android:textSize="40px"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="20px"/>
+                    </com.zhy.autolayout.AutoLinearLayout>
+                    <com.study.app.views.MyGridView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:numColumns="2"
+                        android:id="@+id/gv_hotcourse"
+                        android:verticalSpacing="10px"
+                        android:horizontalSpacing="20px"
+                        ></com.study.app.views.MyGridView>
+                </com.zhy.autolayout.AutoLinearLayout>
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20px"
+                    android:background="@color/white">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/recommend"
+                        android:padding="20px"/>
+                    <com.study.app.views.MyGridView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:numColumns="2"
+                        android:verticalSpacing="20px"
+                        android:horizontalSpacing="20px"
+                        android:padding="20px"
+                        android:id="@+id/gv_recommend">
+
+                    </com.study.app.views.MyGridView>
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recommend_recyclerView"
+                        android:padding="20px"></android.support.v7.widget.RecyclerView>
+                </com.zhy.autolayout.AutoLinearLayout>
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_marginTop="20px"
+                    android:padding="20px">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/study2"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/study_recyclerView">
+
+                    </android.support.v7.widget.RecyclerView>
+                </com.zhy.autolayout.AutoLinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </com.liaoinstan.springview.widget.SpringView>
 </LinearLayout>

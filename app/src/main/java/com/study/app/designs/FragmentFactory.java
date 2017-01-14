@@ -1,4 +1,4 @@
-package com.study.app.factory;
+package com.study.app.designs;
 
 import android.support.v4.app.Fragment;
 

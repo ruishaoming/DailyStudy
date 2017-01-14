@@ -2,7 +2,6 @@ package com.study.app.base;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.utils.NetUtils;
@@ -15,7 +14,7 @@ import com.study.app.views.ShowingPage;
 
 public abstract class BaseShowingPageActivity extends BaseActivity {
 
-    private ShowingPage showingPage;
+    public ShowingPage showingPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,46 +22,53 @@ public abstract class BaseShowingPageActivity extends BaseActivity {
 
         showingPage = new ShowingPage(this) {
             @Override
-            protected View createSuccessView() {
-
-                Toast.makeText(BaseShowingPageActivity.this, "得到成功的视图----", Toast.LENGTH_SHORT).show();
-                return BaseShowingPageActivity.this.createSuccessView();
+            public View setSuccessView() {
+                return createSuccessView();
             }
 
             @Override
-            protected void onLoad() {
-                if (NetUtils.isNoNet()) {
-                    Toast.makeText(BaseShowingPageActivity.this, "没网啦----", Toast.LENGTH_SHORT).show();
-                    showingPage.showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
-                }
-                new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        BaseShowingPageActivity.this.onLoad();
-                    }
-                }.start();
+            public boolean needTitleView() {
+                return true;
             }
+
         };
 
-        //点击重置
+        setContentView(showingPage);
+        createTitleView();
+
         showingPage.setIOnResetShowingPage(new IOnResetShowingPage() {
             @Override
             public void onReset(View v) {
                 onLoad();
             }
         });
+
+        //对网络进行判断
+        if (NetUtils.isNoNet()) {
+            showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
+        } else {
+            onLoad();
+        }
     }
 
-    //继续抽象给继承自自己的Fragment
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    //要求加载数据
     protected abstract void onLoad();
 
+    //设置Title
+    protected abstract void createTitleView();
+
+    //创建我的成功视图
     protected abstract View createSuccessView();
 
     public void showCurrentPage(ShowingPage.StateType stateType) {
         //调用showingPage的方法
         if (showingPage != null) {
-            showingPage.showCurrentPage(stateType);
+            showingPage.setCurrentState(stateType);
         }
     }
 }

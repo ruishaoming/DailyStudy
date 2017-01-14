@@ -17,6 +17,7 @@ import com.study.app.views.ShowingPage;
  */
 
 public abstract class BaseFragment extends Fragment {
+
     public ShowingPage showingPage;
 
     @Nullable
@@ -25,35 +26,35 @@ public abstract class BaseFragment extends Fragment {
 
         showingPage = new ShowingPage(getActivity()) {
             @Override
-            protected View createSuccessView() {
-                return BaseFragment.this.createSuccessView();
+            public View setSuccessView() {
+                return createSuccessView();
             }
 
             @Override
-            protected void onLoad() {
-
-                new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        BaseFragment.this.onLoad();
-                    }
-                }.start();
+            public boolean needTitleView() {
+                return isNeedTitle();
             }
         };
 
+        createTitleView(showingPage);
         return showingPage;
     }
 
-    //继续抽象给继承自自己的Fragment
-    protected abstract void onLoad();
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    protected abstract void createTitleView(ShowingPage showingPage);
+
+    protected abstract boolean isNeedTitle();
 
     protected abstract View createSuccessView();
 
     public void showCurrentPage(ShowingPage.StateType stateType) {
         //调用showingPage的方法
         if (showingPage != null) {
-            showingPage.showCurrentPage(stateType);
+            showingPage.setCurrentState(stateType);
         }
     }
 }

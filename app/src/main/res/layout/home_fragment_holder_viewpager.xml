@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="400px">
+    <com.study.app.views.RootViewPager
+        android:background="#f00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rootViewPager">
+
+    </com.study.app.views.RootViewPager>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/ll_dot"
+        android:background="#0f0"
+        android:layout_alignBottom="@+id/rootViewPager"
+        android:layout_centerHorizontal="true"></LinearLayout>
+
+
+</RelativeLayout>

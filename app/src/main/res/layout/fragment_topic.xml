@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liaoinstan.springview.widget.SpringView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topic_springview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.study.app.views.BounceScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15px"
+            android:orientation="vertical">
+
+            <com.youth.banner.Banner
+                android:id="@+id/topic_banner"
+                android:layout_width="match_parent"
+                android:layout_height="300px"
+                app:indicator_drawable_selected="@mipmap/slidingr"
+                app:indicator_drawable_unselected="@mipmap/sliding" />
+
+            <com.study.app.views.MyListView
+                android:id="@+id/topic_mylist"
+                android:layout_width="match_parent"
+                android:listSelector="#ffffffff"
+                android:layout_height="match_parent"
+                android:divider="@color/topic_tv"
+                android:dividerHeight="1px">
+
+            </com.study.app.views.MyListView>
+
+            <TextView
+                android:text="热门圈子"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/topic_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="80px" />
+
+            <com.study.app.views.MyListView
+                android:id="@+id/topic_hotlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/topic_tv"
+                android:listSelector="#ffffffff"
+                android:dividerHeight="1px">
+
+            </com.study.app.views.MyListView>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.study.app.views.BounceScrollView>
+</com.liaoinstan.springview.widget.SpringView>

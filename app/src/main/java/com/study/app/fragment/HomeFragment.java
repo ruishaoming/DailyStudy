@@ -323,7 +323,6 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         }, Arrays.asList(imageArr)).setPageIndicator(dotArray).setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
 
 
-
     }
 
     class NetworkImageHolderView implements Holder<String> {

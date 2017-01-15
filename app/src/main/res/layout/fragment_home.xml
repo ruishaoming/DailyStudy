@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <com.study.app.views.BounceScrollView
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -169,6 +170,6 @@
                     </android.support.v7.widget.RecyclerView>
                 </com.zhy.autolayout.AutoLinearLayout>
             </LinearLayout>
-        </ScrollView>
+        </com.study.app.views.BounceScrollView>
     </com.liaoinstan.springview.widget.SpringView>
 </LinearLayout>

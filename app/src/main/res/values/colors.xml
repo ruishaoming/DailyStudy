@@ -9,6 +9,7 @@
     <color name="gray">#D8DEE3</color>
     <color name="white">#fff</color>
     <color name="yellow">#F6CC16</color>
+    <color name="hot_tab_selected">#FFDD00</color>
     <color name="black">#000</color>
     <color name="translate">#77000000</color>
     <color name="green">#74E327</color>
@@ -22,6 +23,8 @@
     <color name="c4">#f95d51</color>
     <color name="c5">#34b3ee</color>
     <color name="c6">#90369a</color>
+    <color name="topic_tv">#6e6b6e</color>
+    <color name="item_space">#a9a6a9</color>
 
 
 

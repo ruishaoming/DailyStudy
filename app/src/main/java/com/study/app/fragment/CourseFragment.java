@@ -59,15 +59,20 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
         //重新加载的监听
         showingPage.setIOnResetShowingPage(new IOnResetShowingPage() {
             @Override
             public void onReset(View v) {
                 CourseFragment_isOnlineAndHasNet = true;
-                initData();
+                getData();
             }
         });
+
+        if (CourseFragment_isOnlineAndHasNet) {
+            getData();
+        }else {
+            showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
+        }
     }
 
     /**
@@ -96,12 +101,8 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
     }
 
 
-    private void initData() {
-        //如果当前在线没网
-        if (!CourseFragment_isOnlineAndHasNet) {
-            showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
-            return;
-        }
+    private void getData() {
+
         BaseData b = new BaseData();
         //http://www.meirixue.com/api.php?c=category&a=getall
         b.getData("http://www.meirixue.com/", "http://www.meirixue.com/api.php?c=category&a=getall", BaseData.LONG_TIME, new ICallback() {

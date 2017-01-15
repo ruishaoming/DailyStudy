@@ -40,11 +40,6 @@ public abstract class BaseFragment extends Fragment {
         return showingPage;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
     protected abstract void createTitleView(ShowingPage showingPage);
 
     protected abstract boolean isNeedTitle();

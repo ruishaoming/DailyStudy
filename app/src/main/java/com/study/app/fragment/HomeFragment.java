@@ -1,16 +1,11 @@
 package com.study.app.fragment;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,8 +19,6 @@ import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.study.app.R;
-import com.study.app.activity.DetailsActivity;
-import com.study.app.activity.MainActivity;
 import com.study.app.adapter.RecommedAdapter;
 import com.study.app.adapter.StudyAdapter;
 import com.study.app.base.BaseData;
@@ -138,10 +131,15 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
 
     @Override
     protected void createTitleView(ShowingPage showingPage) {
-        new TitleBuilder(showingPage).setTitleBackGroundColor(Color.RED).setMiddleText("Home中间", 20).setMiddleTextListener(new View.OnClickListener() {
+        new TitleBuilder(showingPage).setTitleBackGroundColor(getResources().getColor(R.color.colorPrimary)).setMiddleImageRes(R.mipmap.meirixue).setMiddleTextListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "HOME", Toast.LENGTH_SHORT).show();
+            }
+        }).setMostRightImageRes(R.mipmap.abc_ic_search_api_mtrl_alpha).setMostRightImageListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -200,7 +198,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     private void initStudy() {
         List<HomeBean.DataBean.IndexothersBean> indexothers = homeBean.data.indexothers;
         study_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        study_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
+        study_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         studyAdapter = new StudyAdapter(getActivity(), indexothers);
         study_recyclerView.setAdapter(studyAdapter);
         studyAdapter.setOnItemClickListener(new OnItemClickListener() {
@@ -210,10 +208,11 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             }
         });
     }
+
     //推荐
     private void initRecommed() {
         List<HomeBean.DataBean.IndexrecommendBean.TopBean> topList = homeBean.data.indexrecommend.top;
-        gv_recommend.setAdapter(new CommonAdapter<HomeBean.DataBean.IndexrecommendBean.TopBean>(getActivity(),R.layout.gv_recommend_item,topList) {
+        gv_recommend.setAdapter(new CommonAdapter<HomeBean.DataBean.IndexrecommendBean.TopBean>(getActivity(), R.layout.gv_recommend_item, topList) {
             @Override
             protected void convert(ViewHolder viewHolder, HomeBean.DataBean.IndexrecommendBean.TopBean item, int position) {
                 ImageView gv_recommend_img = viewHolder.getView(R.id.gv_recommend_img);
@@ -223,7 +222,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         });
         ArrayList<HomeBean.DataBean.IndexrecommendBean.ListviewBean> listview = (ArrayList<HomeBean.DataBean.IndexrecommendBean.ListviewBean>) homeBean.data.indexrecommend.listview;
         recommend_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recommend_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
+        recommend_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recommedAdapter = new RecommedAdapter(getActivity(), listview);
         recommend_recyclerView.setAdapter(recommedAdapter);
         recommedAdapter.setOnItemClickListener(new OnItemClickListener() {
@@ -238,7 +237,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     //热门课程
     private void initHotCourse() {
         final List<HomeBean.DataBean.HotcourseBean> hotcourseList = homeBean.data.hotcourse;
-        gv_hotcourse.setAdapter(new CommonAdapter<HomeBean.DataBean.HotcourseBean>(getActivity(),R.layout.gv_hotcourse_item,hotcourseList) {
+        gv_hotcourse.setAdapter(new CommonAdapter<HomeBean.DataBean.HotcourseBean>(getActivity(), R.layout.gv_hotcourse_item, hotcourseList) {
             @Override
             protected void convert(ViewHolder viewHolder, HomeBean.DataBean.HotcourseBean item, int position) {
                 ImageView gv_hotcourse_img = viewHolder.getView(R.id.gv_hotcourse_img);
@@ -311,7 +310,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         imageArr = new String[slider.size()];
         for (int i = 0; i < slider.size(); i++) {
 //            imageListUrl.add(slider.get(i).img);
-            imageArr[i]=slider.get(i).img;
+            imageArr[i] = slider.get(i).img;
         }
         convenientBanner.startTurning(4000);
 //        convenientBanner.setPageTransformer(new AccordionTransformer());
@@ -320,8 +319,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             public NetworkImageHolderView createHolder() {
                 return new NetworkImageHolderView();
             }
-        }, Arrays.asList(imageArr)).setPageIndicator(dotArray).setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
-
+        }, Arrays.asList(imageArr)).setPageIndicator(dotArray).setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
 
 
     }
@@ -344,7 +342,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
 
     @Override
     public void onRefresh() {
-
+        stop();
     }
 
     public void stop() {

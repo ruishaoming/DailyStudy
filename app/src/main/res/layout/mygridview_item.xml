@@ -19,6 +19,8 @@
         android:id="@+id/myGrideView_text"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10px"
+        android:textColor="@color/main_bottom_tv_normal"
+        android:textSize="@dimen/main_activity_title_tv"
         />
 
 </LinearLayout>

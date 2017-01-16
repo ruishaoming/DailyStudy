@@ -18,7 +18,8 @@
             android:id="@+id/gv_hotcourse_title"
             android:textColor="@color/white"
             android:background="@color/translate"
-            android:layout_alignBottom="@+id/gv_hotcourse_img"/>
+            android:layout_alignBottom="@+id/gv_hotcourse_img"
+            android:textSize="@dimen/main_activity_title_tv"/>
 
     </com.zhy.autolayout.AutoRelativeLayout>
 
@@ -26,6 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gv_hotcourse_name"
-        android:layout_marginTop="10px"/>
+        android:layout_marginTop="10px"
+        android:textSize="25px"
+        android:textColor="@color/main_bottom_tv_normal"/>
 
 </LinearLayout>

@@ -1,12 +1,10 @@
 package com.study.app.base;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.study.app.interfaces.ICallback;
 import com.study.app.interfaces.IRetrofitAPI;
 import com.study.app.utils.CommonUtils;
-import com.study.app.utils.LogUtils;
 import com.study.app.utils.Md5Encoder;
 import com.study.app.utils.ReadCookiesInterceptor;
 import com.study.app.utils.SaveCookiesInterceptor;

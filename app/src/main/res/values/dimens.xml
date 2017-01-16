@@ -4,4 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="main_activity_bottom_tv">30px</dimen>
     <dimen name="main_activity_title_tv">20px</dimen>
+    <dimen name="quan_tablayout_tv">40px</dimen>
+    <dimen name="topic_title_tv">30px</dimen>
+    <dimen name="topic_other_tv">25px</dimen>
 </resources>

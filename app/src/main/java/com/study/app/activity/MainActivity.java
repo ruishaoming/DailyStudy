@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity {
     private void initViews() {
         radioGroup = (RadioGroup) findViewById(R.id.main_bottom_rg);
         vp = (LazyViewPager) findViewById(R.id.main_vp);
-//        vp.setOffscreenPageLimit(1);
+        vp.setOffscreenPageLimit(1);
     }
 
     //监听连续两次返回退出

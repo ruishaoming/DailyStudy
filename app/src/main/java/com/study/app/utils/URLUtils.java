@@ -17,7 +17,7 @@ public class URLUtils {
      */
     public static final String HOT_URL = "/api.php?c=circle&a=getCirclePostListByTid";
 
-    //圈子----热门/Title
+    //圈子----热门/Title/get请求
     public static final String HOT_TITLE_URL = "http://www.meirixue.com/api.php?c=circle&a=getRecommendTag";
 
 }

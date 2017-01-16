@@ -35,15 +35,13 @@ import com.study.app.views.ShowingPage;
  */
 
 public class QuanFragment extends BaseFragment implements View.OnClickListener {
-    //pagerslidingtabstrip
+
     private String responseInfo;
     private TextView textView;
     private TabLayout mTabLayout;
     //pagerslidingtabstrip
     private String[] titleArray = {"话题", "热门", "关注"};
     private ViewPager mViewPager;
-
-
 
     @Override
     protected View createSuccessView() {

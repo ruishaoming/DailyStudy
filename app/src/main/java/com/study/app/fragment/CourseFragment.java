@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -19,11 +19,10 @@ import com.study.app.designs.TitleBuilder;
 import com.study.app.interfaces.ICallback;
 import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.utils.CommonUtils;
-import com.study.app.utils.LogUtils;
+
 import com.study.app.utils.NetUtils;
 import com.study.app.views.ShowingPage;
 
-import static com.study.app.R.id.elv;
 
 /**
  * 课程分类

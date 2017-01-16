@@ -14,6 +14,7 @@ import com.study.app.designs.TitleBuilder;
 import com.study.app.fragment.QuanFragment;
 import com.study.app.interfaces.ICallback;
 import com.study.app.interfaces.IOnResetShowingPage;
+import com.study.app.utils.CommonUtils;
 import com.study.app.views.ShowingPage;
 
 /**
@@ -56,6 +57,7 @@ public class DetailsActivity extends BaseShowingPageActivity {
     @Override
     protected View createSuccessView() {
         textView = new TextView(this);
+
         return textView;
     }
 

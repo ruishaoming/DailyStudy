@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="20px">
+    android:padding="20px"
+    >
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="260px"
@@ -12,8 +13,8 @@
 
         <ImageView
             android:id="@+id/recycler_item_img"
-            android:layout_width="200px"
-            android:layout_height="150px"
+            android:layout_width="240px"
+            android:layout_height="140px"
             android:src="@mipmap/icon" />
     </com.zhy.autolayout.AutoLinearLayout>
 
@@ -36,19 +37,21 @@
             android:id="@+id/recycler_item_school_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10px"
-            android:textColor="@color/main_bottom_tv_normal" />
+            android:layout_marginTop="20px"
+            android:textColor="@color/main_bottom_tv_normal"
+            android:textSize="@dimen/main_activity_title_tv"/>
 
         <com.zhy.autolayout.AutoRelativeLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10px">
+            android:layout_marginTop="20px">
 
             <TextView
                 android:id="@+id/recycler_item_price"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/main_activity_title_tv"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -67,6 +70,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20px"
                 android:text="12人在学"
+                android:textSize="@dimen/main_activity_title_tv"
                 android:textColor="@color/main_bottom_tv_normal" />
         </com.zhy.autolayout.AutoRelativeLayout>
     </com.zhy.autolayout.AutoLinearLayout>

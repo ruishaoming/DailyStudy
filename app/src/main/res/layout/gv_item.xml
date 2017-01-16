@@ -20,7 +20,9 @@
         <TextView
             android:id="@+id/gv_title"
             android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+            android:textSize="@dimen/main_activity_title_tv"
+            android:textColor="@color/main_bottom_tv_normal"/>
     </com.zhy.autolayout.AutoLinearLayout>
     <ImageView
         android:id="@+id/gv_img"

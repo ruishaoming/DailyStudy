@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mei_ri_xue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/meirixue_springView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/meirixue_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="350px" />
+
+                <TextView
+                    android:id="@+id/meirixue_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="20px"
+                    android:text="123"
+                    android:textColor="@color/main_bottom_tv_normal"
+                    android:textSize="@dimen/main_activity_bottom_tv" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="20px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="织围巾"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/quan_tablayout_tv"
+                        android:layout_marginLeft="20px"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5px"
+                        android:layout_marginTop="20px"
+                        android:layout_marginBottom="20px"
+                        android:background="@color/main_bottom_tv_normal"/>
+
+                    <com.zhy.autolayout.AutoRelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/meirixue_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+                    </com.zhy.autolayout.AutoRelativeLayout>
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </ScrollView>
+    </com.liaoinstan.springview.widget.SpringView>
+</LinearLayout>

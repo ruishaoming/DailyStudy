@@ -140,6 +140,7 @@ public class HomeBean {
             public String name;
             public String title;
             public String img;
+            public String url;
 
             public AdlistBean(String name, String title, String img) {
                 this.name = name;

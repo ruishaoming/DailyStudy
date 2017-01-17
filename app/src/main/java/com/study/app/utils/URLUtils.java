@@ -14,9 +14,15 @@ public class URLUtils {
      * 圈子----热门/post请求
      * 请求参数 tid=79 & page=1
      */
-    public static final String HOT_URL = "/api.php?c=circle&a=getCirclePostListByTid";
+    public static final String HOT_URL = "api.php?c=circle&a=getCirclePostListByTid";
 
     //圈子----热门/Title/get请求
     public static final String HOT_TITLE_URL = "http://www.meirixue.com/api.php?c=circle&a=getRecommendTag";
+
+    //登录接口/post
+    /**
+     * userName=13520183019&password=123&dosubmit=1
+     */
+    public static final String LOGIN_URL = "api.php?c=login&a=index";
 
 }

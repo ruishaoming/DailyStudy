@@ -26,7 +26,7 @@
             <com.study.app.views.MyListView
                 android:id="@+id/topic_mylist"
                 android:layout_width="match_parent"
-                android:listSelector="#ffffffff"
+                android:listSelector="@color/no_item_color"
                 android:layout_height="match_parent"
                 android:divider="@color/topic_tv"
                 android:dividerHeight="1px">

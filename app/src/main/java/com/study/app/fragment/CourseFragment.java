@@ -79,7 +79,7 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
      */
     @Override
     protected void createTitleView(ShowingPage showingPage) {
-        new TitleBuilder(showingPage).setTitleBackGroundColor(Color.RED).setMiddleText("全部分类", 40).setRightImageRes(R.mipmap.glass).setMostRightImageListener(new View.OnClickListener() {
+        new TitleBuilder(showingPage).setTitleBackGroundRes(R.color.colorPrimary).setMiddleText("全部分类", 0).setRightImageRes(R.mipmap.glass).setMostRightImageListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -110,6 +110,8 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
                 elv.setAdapter(elvadapter);
                 //设置首次进入程序  二级列表  子条目的第一个条目为展开
                 if (tag) {
+                    //设置一个默认的展开
+                    sortBean[0].setClose(true);
                     elv.expandGroup(0);
                     tag = false;
                 }

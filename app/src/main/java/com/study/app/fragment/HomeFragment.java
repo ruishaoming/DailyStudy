@@ -157,7 +157,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         map.put("a", "indexv9");
         map.put("c", "index");
 //        a=indexv9&c=index
-        baseData.postData(false, false, "http://www.meirixue.com", "/api.php", BaseData.SHORT_TIME, map, new ICallback() {
+        baseData.postData(false, false, "http://www.meirixue.com", "/api.php", BaseData.TEN_MINUTE_TIME, map, new ICallback() {
             @Override
             public void onResponse(String responseInfo) {
                 //得到请求的数据并解析

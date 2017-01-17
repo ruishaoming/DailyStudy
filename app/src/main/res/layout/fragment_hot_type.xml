@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ff0"
     android:layout_height="match_parent">
 
     <com.liaoinstan.springview.widget.SpringView
@@ -16,6 +14,7 @@
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
+
     </com.liaoinstan.springview.widget.SpringView>
 
     <android.support.design.widget.FloatingActionButton
@@ -28,5 +27,13 @@
         android:layout_marginRight="20px"
         android:src="@mipmap/posting" />
 
+    <!--<com.melnykov.fab.FloatingActionButton-->
+    <!--android:id="@+id/hot_type_FloatingActionButton"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_margin="60px"-->
+    <!--android:src="@mipmap/posting" />-->
 
 </com.zhy.autolayout.AutoRelativeLayout>

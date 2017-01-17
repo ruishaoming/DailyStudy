@@ -120,5 +120,13 @@ public class HotTitltInfo {
         public void setTid(String tid) {
             this.tid = tid;
         }
+
+        public DataBean() {
+        }
+
+        public DataBean(String tid, String name) {
+            this.tid = tid;
+            this.name = name;
+        }
     }
 }

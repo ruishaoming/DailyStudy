@@ -32,6 +32,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class BaseData {
 
     public static final int NO_TIME = 0;//要最新的数据
+    public static final int TEN_MINUTE_TIME = 10 * 60 * 1000;//10分钟
     public static final int SHORT_TIME = 60 * 60 * 1000;//一小时
     public static final int LONG_TIME = 24 * 60 * 60 * 1000;//一天
     private final File fileDir;

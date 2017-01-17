@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.study.app.R;
 import com.study.app.application.MyApplication;
@@ -139,5 +141,9 @@ public class CommonUtils {
     public static void finishActivity(Activity activity) {
         activity.finish();
         activity.overridePendingTransition(R.anim.xin_left, R.anim.xout_right);
+    }
+
+    public static String getText(TextView v) {
+        return v.getText().toString().trim();
     }
 }

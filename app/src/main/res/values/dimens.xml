@@ -3,8 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="main_activity_bottom_tv">30px</dimen>
-    <dimen name="main_activity_title_tv">20px</dimen>
+    <dimen name="main_activity_title_tv">25px</dimen>
     <dimen name="quan_tablayout_tv">40px</dimen>
     <dimen name="topic_title_tv">30px</dimen>
     <dimen name="topic_other_tv">25px</dimen>
+    <dimen name="title_tv">40px</dimen>
+    <dimen name="hot_username">28px</dimen>
+    <dimen name="hot_title">30px</dimen>
+    <dimen name="hot_content">28px</dimen>
+    <dimen name="login_btn">30px</dimen>
 </resources>

@@ -8,7 +8,7 @@ public class URLUtils {
     //分类页面的数据
     public static final String COURSELIST_RUL = "http://www.meirixue.com/api.php?c=category&a=getall";
     //圈子----话题/get请求
-    public static final String TOPIC_URL= "http://www.meirixue.com/api.php?c=circle&a=getCircleNamesIndexV2";
+    public static final String TOPIC_URL = "http://www.meirixue.com/api.php?c=circle&a=getCircleNamesIndexV2";
 
     /**
      * 圈子----热门/post请求
@@ -24,5 +24,15 @@ public class URLUtils {
      * userName=13520183019&password=123&dosubmit=1
      */
     public static final String LOGIN_URL = "api.php?c=login&a=index";
+
+    /**
+     * post
+     * 圈子话题条目点击
+     */
+    public static final String TOPIC_ITEM = "api.php?c=circle&a=getCircleNameInfo";
+    /**
+     * 话题**最新最热
+     */
+    public static final String TOPIC_HOT_NEWS = "api.php?c=circle&a=getCirclePostList";
 
 }

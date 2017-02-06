@@ -25,6 +25,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import static android.R.attr.key;
+import static android.R.attr.value;
+
 /**
  * Created by 芮靖林
  * on 2016/11/28.
@@ -36,8 +39,7 @@ public class BaseData {
     public static final int SHORT_TIME = 60 * 60 * 1000;//一小时
     public static final int LONG_TIME = 24 * 60 * 60 * 1000;//一天
     private final File fileDir;
-    private String key;
-    private String value;
+    private StringBuilder stringPath;
 
     public BaseData() {
         File cacheDir = CommonUtils.getContext().getCacheDir();
@@ -65,6 +67,7 @@ public class BaseData {
 
     /**
      * get网络请求
+     *
      * @param baseUrl
      * @param url
      * @param time
@@ -101,18 +104,17 @@ public class BaseData {
     }
 
     //post请求数据
-
     public void postData(boolean isReadCookie, boolean isSaveCookie, String baseUrl, String url, int time, Map<String, String> map, ICallback icallback) {
         Set<Map.Entry<String, String>> entrySet = map.entrySet();
+        stringPath = new StringBuilder();
         for (Map.Entry<String, String> stringEntry : entrySet) {
-            key = stringEntry.getKey();
-            value = stringEntry.getValue();
+            stringPath.append(stringEntry.getKey() + stringEntry.getValue());
         }
 
         if (time == 0) {
             postDataFromNet(isReadCookie, isSaveCookie, baseUrl, url, time, map, icallback);
         } else {
-            String data = getDataFromLocal(baseUrl + url + key + value, time);
+            String data = getDataFromLocal(baseUrl + url + stringPath, time);
             if (TextUtils.isEmpty(data)) {
                 //如果本地没有数据，则请求网络
                 postDataFromNet(isReadCookie, isSaveCookie, baseUrl, url, time, map, icallback);

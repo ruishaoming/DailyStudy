@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:padding="10px"
                 android:text="立即登录"
-                android:textColor="#ffffff"
+                android:textColor="@color/hot_content"
                 android:textSize="36px" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="22px"
                 android:text="登陆后可云同步课程"
-                android:textColor="#ffffff"
+                android:textColor="@color/hot_content"
                 android:textSize="24px" />
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -67,7 +67,7 @@
                 android:singleLine="true"
                 android:text="默认放电话号码"
                 android:textColor="#ffffff"
-                android:textSize="24px" />
+                android:textSize="30px" />
 
             <ImageView
                 android:id="@+id/my_log_iv"
@@ -101,14 +101,15 @@
             android:layout_marginLeft="22px"
             android:drawableRight="@mipmap/myrig"
             android:gravity="center_vertical"
-            android:text="我的课程" />
+            android:text="我的课程"
+            android:textColor="@color/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="38px"
-        android:background="#c9c9c9" />
+        android:background="@color/item_space" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_fragment_mine_collections"
@@ -129,14 +130,15 @@
             android:layout_marginLeft="22px"
             android:drawableRight="@mipmap/myrig"
             android:gravity="center_vertical"
-            android:text="收藏" />
+            android:text="收藏"
+            android:textColor="@color/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="38px"
-        android:background="#c9c9c9" />
+        android:background="@color/item_space" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_fragment_mine_coupon"
@@ -149,7 +151,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                android:src="@mipmap/myc" />
+            android:src="@mipmap/myc" />
 
         <TextView
             android:layout_width="match_parent"
@@ -157,14 +159,15 @@
             android:layout_marginLeft="22px"
             android:drawableRight="@mipmap/myrig"
             android:gravity="center_vertical"
-            android:text="优惠券" />
+            android:text="优惠券"
+            android:textColor="@color/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="38px"
-        android:background="#c9c9c9" />
+        android:background="@color/item_space" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_fragment_mine_message"
@@ -185,14 +188,15 @@
             android:layout_marginLeft="22px"
             android:drawableRight="@mipmap/myrig"
             android:gravity="center_vertical"
-            android:text="我的消息" />
+            android:text="我的消息"
+            android:textColor="@color/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="38px"
-        android:background="#c9c9c9" />
+        android:background="@color/item_space" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_fragment_mine_feedback"
@@ -213,14 +217,15 @@
             android:layout_marginLeft="22px"
             android:drawableRight="@mipmap/myrig"
             android:gravity="center_vertical"
-            android:text="意见反馈" />
+            android:text="意见反馈"
+            android:textColor="@color/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="38px"
-        android:background="#c9c9c9" />
+        android:background="@color/item_space" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_fragment_mine_setting"
@@ -241,7 +246,8 @@
             android:layout_marginLeft="22px"
             android:drawableRight="@mipmap/myrig"
             android:gravity="center_vertical"
-            android:text="设置" />
+            android:text="设置"
+            android:textColor="@color/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <View

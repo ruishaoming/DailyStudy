@@ -31,6 +31,10 @@
             android:textSize="@dimen/hot_content" />
     </com.zhy.autolayout.AutoLinearLayout>
 
+    <View
+        android:layout_width="2px"
+        android:layout_height="match_parent"
+        android:background="@color/gray" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/share_linearLayout"
@@ -45,6 +49,7 @@
             android:id="@+id/share_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:src="@mipmap/share" />
 
         <TextView
@@ -56,11 +61,6 @@
             android:textSize="@dimen/hot_content" />
 
     </com.zhy.autolayout.AutoLinearLayout>
-
-    <View
-        android:layout_width="2px"
-        android:layout_height="match_parent"
-        android:background="@color/gray" />
 
     <View
         android:layout_width="2px"

@@ -1,10 +1,12 @@
 package com.study.app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -12,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.liaoinstan.springview.widget.SpringView;
 import com.study.app.R;
+import com.study.app.activity.TopicActivity;
 import com.study.app.base.BaseData;
 import com.study.app.base.BaseFragment;
 import com.study.app.bean.TopicInfo;
@@ -21,6 +24,7 @@ import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.utils.CommonUtils;
 import com.study.app.utils.NetUtils;
 import com.study.app.utils.URLUtils;
+import com.study.app.views.MyHeader;
 import com.study.app.views.ShowingPage;
 import com.youth.banner.Banner;
 import com.youth.banner.Transformer;
@@ -36,12 +40,14 @@ import java.util.List;
  * on 2017/1/14 13:32.
  */
 
-public class TopicFragment extends BaseFragment implements OnBannerClickListener {
+public class TopicFragment extends BaseFragment implements OnBannerClickListener, AdapterView.OnItemClickListener, SpringView.OnFreshListener {
     private SpringView mSringView;
     private Banner mBanner;
     private ListView mMyLv;
     private ListView mHotLv;
     private boolean TopicFragment_isOnlineAndHasNet = true;
+    private TopicInfo topicInfo;
+    private SpringView mSpringView;
 
     //进行网路判断
     @Override
@@ -65,6 +71,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
     @Override
     protected View createSuccessView() {
         View rootView = CommonUtils.inflate(R.layout.fragment_topic);
+        mSpringView = (SpringView) rootView.findViewById(R.id.topic_springview);
         mSringView = (SpringView) rootView.findViewById(R.id.topic_springview);
         mBanner = (Banner) rootView.findViewById(R.id.topic_banner);
         mBanner.setOnBannerClickListener(this);
@@ -72,6 +79,9 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
         mHotLv = (ListView) rootView.findViewById(R.id.topic_hotlist);
         mMyLv.setFocusable(false);
         mHotLv.setFocusable(false);
+        mSpringView.setType(SpringView.Type.FOLLOW);
+        mSpringView.setHeader(new MyHeader(getActivity()));
+        mSpringView.setListener(this);
         return rootView;
     }
 
@@ -88,7 +98,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
         });
         if (TopicFragment_isOnlineAndHasNet) {
             getData();
-        }else {
+        } else {
             showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
         }
     }
@@ -97,9 +107,11 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
     private void getData() {
         BaseData baseData = new BaseData();
         baseData.getData(URLUtils.BASE_URL, URLUtils.TOPIC_URL, BaseData.SHORT_TIME, new ICallback() {
+
+
             @Override
             public void onResponse(String responseInfo) {
-                TopicInfo topicInfo = new Gson().fromJson(responseInfo, TopicInfo.class);
+                topicInfo = new Gson().fromJson(responseInfo, TopicInfo.class);
                 initData(topicInfo);
                 showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
             }
@@ -138,6 +150,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
             }
         });
 
+        mHotLv.setOnItemClickListener(this);
     }
 
     /**
@@ -153,5 +166,26 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    /**
+     * 话题条目点击
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), TopicActivity.class);
+        intent.putExtra("nid", topicInfo.getData().getCircle().get(position).getNid());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        getData();
+        mSpringView.onFinishFreshAndLoad();
+    }
+
+    @Override
+    public void onLoadmore() {
+
     }
 }

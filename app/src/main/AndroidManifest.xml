@@ -34,7 +34,8 @@
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.CourseInfoActivity"></activity>
+        <activity android:name=".activity.CourseInfoActivity" />
+        <activity android:name=".activity.TopicActivity"></activity>
     </application>
 
 </manifest>

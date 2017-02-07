@@ -148,7 +148,7 @@ public class HotTypeFragment extends BaseFragment implements SpringView.OnFreshL
                     //判断数据是否为空
                     if (!TextUtils.isEmpty(source)) {
                         //解析数据
-
+                      //  Gson gson = new Gson();
                         String[] imageArray = gson.fromJson(source, String[].class);
                         if (imageArray.length >= 3) {
                             two_linearLayout.setVisibility(View.GONE);
@@ -244,5 +244,4 @@ public class HotTypeFragment extends BaseFragment implements SpringView.OnFreshL
         getData();
         stop();
     }
-
 }

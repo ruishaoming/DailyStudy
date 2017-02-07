@@ -1,13 +1,14 @@
 package com.study.app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.study.app.R;
+import com.study.app.activity.DetailsActivity;
+import com.study.app.activity.MeiRiXueActivity;
 import com.study.app.adapter.RecommedAdapter;
 import com.study.app.adapter.StudyAdapter;
 import com.study.app.base.BaseData;
@@ -31,11 +34,12 @@ import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.interfaces.OnItemClickListener;
 import com.study.app.utils.CommonUtils;
 import com.study.app.utils.NetUtils;
+import com.study.app.utils.URLUtils;
 import com.study.app.views.MyGridView;
-import com.study.app.views.RootViewPager;
 import com.study.app.views.ShowingPage;
 import com.zhy.adapter.abslistview.CommonAdapter;
 import com.zhy.adapter.abslistview.ViewHolder;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,25 +56,15 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     private boolean CourseFragment_isOnline = true;
     private SpringView springView;
     private HomeBean homeBean;
-    private LinearLayout ll_dot;
     private List<HomeBean.DataBean.SliderBean> slider;
-    ArrayList<String> imageListUrl = new ArrayList<>();
-    ArrayList<ImageView> dotList = new ArrayList<>();
     int[] dotArray = {R.mipmap.sliding, R.mipmap.slidingr};
     HashMap<String, String> map = new HashMap<>();
-    private RootViewPager roolViewPager;
     private View view;
     private MyGridView myGridView;
     private List<HomeBean.DataBean.HotcategoryBean> hotcategoryList;
     private ImageView idea_img;
-    private ImageView sw_img;
-    private ImageView run_img;
     private TextView idea_name;
     private TextView idea_title;
-    private TextView sw_name;
-    private TextView sw_title;
-    private TextView run_name;
-    private TextView run_title;
     private MyGridView gv;
     private MyGridView gv_hotcourse;
     private MyGridView gv_recommend;
@@ -80,6 +74,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     private StudyAdapter studyAdapter;
     private ConvenientBanner convenientBanner;
     private String[] imageArr;
+    private AutoLinearLayout home_fragment_ll;
 
     @Override
     public void onAttach(Context context) {
@@ -113,6 +108,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         gv_recommend = (MyGridView) view.findViewById(R.id.gv_recommend);
         recommend_recyclerView = (RecyclerView) view.findViewById(R.id.recommend_recyclerView);
         study_recyclerView = (RecyclerView) view.findViewById(R.id.study_recyclerView);
+        home_fragment_ll = (AutoLinearLayout) view.findViewById(R.id.home_fragment_ll);
     }
 
     @Override
@@ -152,12 +148,12 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
 
     //初始化数据
     private void getData() {
-//网络请求
+        //网络请求
         BaseData baseData = new BaseData();
         map.put("a", "indexv9");
         map.put("c", "index");
-//        a=indexv9&c=index
-        baseData.postData(false, false, "http://www.meirixue.com", "/api.php", BaseData.TEN_MINUTE_TIME, map, new ICallback() {
+        // a=indexv9&c=index
+        baseData.postData(false, false, URLUtils.Home_BASEURL, URLUtils.Home_URL, BaseData.SHORT_TIME, map, new ICallback() {
             @Override
             public void onResponse(String responseInfo) {
                 //得到请求的数据并解析
@@ -196,7 +192,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
 
     //大家都在学
     private void initStudy() {
-        List<HomeBean.DataBean.IndexothersBean> indexothers = homeBean.data.indexothers;
+        final List<HomeBean.DataBean.IndexothersBean> indexothers = homeBean.data.indexothers;
         study_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         study_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         studyAdapter = new StudyAdapter(getActivity(), indexothers);
@@ -204,14 +200,16 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         studyAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent intent = new Intent(getActivity(),DetailsActivity.class);
+                intent.putExtra("url",indexothers.get(position).cid);
+                startActivity(intent);
             }
         });
     }
 
     //推荐
     private void initRecommed() {
-        List<HomeBean.DataBean.IndexrecommendBean.TopBean> topList = homeBean.data.indexrecommend.top;
+        final List<HomeBean.DataBean.IndexrecommendBean.TopBean> topList = homeBean.data.indexrecommend.top;
         gv_recommend.setAdapter(new CommonAdapter<HomeBean.DataBean.IndexrecommendBean.TopBean>(getActivity(), R.layout.gv_recommend_item, topList) {
             @Override
             protected void convert(ViewHolder viewHolder, HomeBean.DataBean.IndexrecommendBean.TopBean item, int position) {
@@ -220,7 +218,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
                 Glide.with(getActivity()).load(item.course_pic).into(gv_recommend_img);
             }
         });
-        ArrayList<HomeBean.DataBean.IndexrecommendBean.ListviewBean> listview = (ArrayList<HomeBean.DataBean.IndexrecommendBean.ListviewBean>) homeBean.data.indexrecommend.listview;
+        final ArrayList<HomeBean.DataBean.IndexrecommendBean.ListviewBean> listview = (ArrayList<HomeBean.DataBean.IndexrecommendBean.ListviewBean>) homeBean.data.indexrecommend.listview;
         recommend_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recommend_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recommedAdapter = new RecommedAdapter(getActivity(), listview);
@@ -228,7 +226,18 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         recommedAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                Intent intent = new Intent(getActivity(),DetailsActivity.class);
+                intent.putExtra("url",listview.get(position).cid);
+                startActivity(intent);
 
+            }
+        });
+        gv_recommend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(),DetailsActivity.class);
+                intent.putExtra("url",topList.get(position).cid);
+                startActivity(intent);
             }
         });
 
@@ -249,12 +258,20 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
                 gv_hotcourse_title.setText(item.title);
             }
         });
+        gv_hotcourse.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(),DetailsActivity.class);
+                intent.putExtra("url",hotcourseList.get(position).cid);
+                startActivity(intent);
+            }
+        });
 
     }
 
     //最强思路
     private void initIdea() {
-        List<HomeBean.DataBean.AdlistBean> adlist = homeBean.data.adlist;
+        final List<HomeBean.DataBean.AdlistBean> adlist = homeBean.data.adlist;
         final List<HomeBean.DataBean.AdlistBean> ideaList = new ArrayList<>();
         for (int i = 0; i < adlist.size(); i++) {
             if (i > 0 && i < 3) {
@@ -264,6 +281,14 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         idea_name.setText(adlist.get(0).name);
         idea_title.setText(adlist.get(0).title);
         Glide.with(getActivity()).load(adlist.get(0).img).into(idea_img);
+        home_fragment_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra("url",adlist.get(0).url);
+                startActivity(intent);
+            }
+        });
         final int[] color = {getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.yellow)};
         gv.setAdapter(new CommonAdapter<HomeBean.DataBean.AdlistBean>(getActivity(), R.layout.gv_item, ideaList) {
             @Override
@@ -277,7 +302,14 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
                 gv_name.setTextColor(color[position]);
             }
         });
-
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(),DetailsActivity.class);
+                intent.putExtra("url",ideaList.get(position).url);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -302,6 +334,12 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             }
 
         });
+        myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     //轮播图
@@ -320,7 +358,24 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
                 return new NetworkImageHolderView();
             }
         }, Arrays.asList(imageArr)).setPageIndicator(dotArray).setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
+        convenientBanner.setOnItemClickListener(new com.bigkoo.convenientbanner.listener.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                int length = slider.get(position).url.toString().length();
+                if (length==2) {
+                    Intent intent = new Intent(getActivity(), MeiRiXueActivity.class);
+                    intent.putExtra("url", slider.get(position).url);
+                    startActivity(intent);
+                }
+                else if (length>2&&length<5){
+                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                    intent.putExtra("url", slider.get(position).url);
+                    startActivity(intent);
+                }else {
 
+                }
+            }
+        });
     }
 
     class NetworkImageHolderView implements Holder<String> {

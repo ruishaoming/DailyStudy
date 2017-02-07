@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import com.study.app.bean.MeiRiXueBean;
 import com.study.app.designs.CourseInfoFragmentFactory;
 import com.study.app.designs.TitleBuilder;
 import com.study.app.interfaces.ICallback;
+import com.study.app.utils.URLUtils;
+import com.study.app.views.SelectSharePopupWindow;
 import com.study.app.views.ShowingPage;
 
 import java.util.HashMap;
@@ -32,8 +35,6 @@ import java.util.List;
  */
 public class DetailsActivity extends BaseShowingPageActivity {
 
-    private String responseInfo;
-    private TextView textView;
     private ImageView course_info_img;
     private TextView course_info_name;
     private TextView course_info_price;
@@ -42,24 +43,24 @@ public class DetailsActivity extends BaseShowingPageActivity {
     private TextView course_sum;
     private TextView course_comment;
     private TextView course_read_count;
-    String[] title = {"详情", "目录", "评论（0）"};
+
     HashMap<String, String> map = new HashMap<>();
     private String url;
     private List<MeiRiXueBean.DataListBean.ListBean> list;
-    private MeiRiXueBean viewPagerBean;
-    private CourseInfoBean courseInfoBean;
+    public CourseInfoBean courseInfoBean;
     private CourseInfoBean.DataBean data;
+    private String[] title;
 
     @Override
     protected void onLoad() {
         BaseData baseData = new BaseData();
         map.put("courseid", url);
-        baseData.postData(false, false, "http://www.meirixue.com", "/api.php?c=course&a=getCourseInfo", BaseData.SHORT_TIME, map, new ICallback() {
-
+        baseData.postData(false, false, URLUtils.Course_BASEURL, URLUtils.Course_URL, BaseData.SHORT_TIME, map, new ICallback() {
             @Override
             public void onResponse(String responseInfo) {
                 Gson gson = new Gson();
                 courseInfoBean = gson.fromJson(responseInfo, CourseInfoBean.class);
+                title = new String[]{"详情", "目录", "评论("+courseInfoBean.data.commentcount+")"};
                 data = courseInfoBean.data;
                 DetailsActivity.this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
                 runOnUiThread(new Runnable() {
@@ -92,12 +93,41 @@ public class DetailsActivity extends BaseShowingPageActivity {
 
             }
         }).setMostRightImageRes(R.mipmap.share).setMostRightImageListener(new View.OnClickListener() {
+
+            private SelectSharePopupWindow menuWindow;
+
             @Override
             public void onClick(View v) {
+                //实例化SelectPicPopupWindow
+                menuWindow = new SelectSharePopupWindow(DetailsActivity.this, itemsOnClick);
+                //显示窗口
+                menuWindow.showAtLocation(DetailsActivity.this.findViewById(R.id.activity_course_info), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 
             }
         });
     }
+    //为弹出窗口实现监听类
+    private View.OnClickListener itemsOnClick = new View.OnClickListener() {
+        public void onClick(View v) {
+//            menuWindow.dismiss();
+            switch (v.getId()) {
+                case R.id.tv_qq:
+                    break;
+                case R.id.tv_weixin:
+                    break;
+                case R.id.tv_sina:
+                    break;
+                case R.id.tv_friend:
+                    break;
+                case R.id.tv_qzone:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+    };
 
     @Override
     protected View createSuccessView() {
@@ -112,7 +142,12 @@ public class DetailsActivity extends BaseShowingPageActivity {
         Glide.with(this).load(data.course_pic).into(course_info_img);
         course_info_img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         course_info_name.setText(data.course_name);
-        course_info_price.setText(data.course_price);
+        if (data.course_price.equals("0.00")){
+            course_info_price.setText("免费");
+        }else {
+            course_info_price.setText(data.course_price);
+        }
+
         course_sum.setText("总课时:  " + data.course_hour);
         course_comment.setText("评分:  " + data.goodrate);
         course_read_count.setText(data.course_paycount + "人学");
@@ -153,16 +188,8 @@ public class DetailsActivity extends BaseShowingPageActivity {
             public int getCount() {
                 return 3;
             }
-
-//            @Override
-//            public CharSequence getPageTitle(int position) {
-//                return title[position];
-//            }
         };
 
-//        course_info_tabLayout.setTabsFromPagerAdapter(fragmentPagerAdapter);
-
-//        course_info_tabLayout.setupWithViewPager(course_info_viewPager);
 
         course_info_viewPager.setAdapter(fragmentPagerAdapter);
         course_info_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -180,6 +207,7 @@ public class DetailsActivity extends BaseShowingPageActivity {
 
             }
         });
+        course_info_viewPager.setCurrentItem(1);
         course_info_tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

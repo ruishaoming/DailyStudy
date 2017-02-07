@@ -7,23 +7,23 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.bwie.test.ynf_project.R;
+import com.study.app.R;
+
 
 /**
- * Created by Administrator on 2016/12/5.
+ * Created by 郭艳杰 on 2017/1/5.
  */
 public class SelectSharePopupWindow extends PopupWindow {
-    private Button btn_take_photo, btn_pick_photo, btn_cancel;
     private View mMenuView;
     private final TextView tv_qq;
     private final TextView tv_weixin;
     private final TextView tv_sina;
-    private final TextView cancel;
+    private final TextView tv_qzone;
+    private final TextView tv_friend;
 
     public SelectSharePopupWindow(Activity context, View.OnClickListener itemsOnClick) {
         super(context);
@@ -33,19 +33,14 @@ public class SelectSharePopupWindow extends PopupWindow {
         tv_qq = (TextView) mMenuView.findViewById(R.id.tv_qq);
         tv_weixin = (TextView) mMenuView.findViewById(R.id.tv_weixin);
         tv_sina = (TextView) mMenuView.findViewById(R.id.tv_sina);
-        cancel = (TextView) mMenuView.findViewById(R.id.cancel);
-        //取消按钮
-        cancel.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                //销毁弹出框
-                dismiss();
-            }
-        });
+        tv_qzone = (TextView) mMenuView.findViewById(R.id.tv_qzone);
+        tv_friend = (TextView) mMenuView.findViewById(R.id.tv_friend);
         //设置按钮监听
         tv_qq.setOnClickListener(itemsOnClick);
         tv_weixin.setOnClickListener(itemsOnClick);
-        tv_weixin.setOnClickListener(itemsOnClick);
+        tv_sina.setOnClickListener(itemsOnClick);
+        tv_qzone.setOnClickListener(itemsOnClick);
+        tv_friend.setOnClickListener(itemsOnClick);
         //设置SelectPicPopupWindow的View
         this.setContentView(mMenuView);
         //设置SelectPicPopupWindow弹出窗体的宽
@@ -68,9 +63,9 @@ public class SelectSharePopupWindow extends PopupWindow {
             public boolean onTouch(View v, MotionEvent event) {
 
                 int height = mMenuView.findViewById(R.id.pop_layout).getTop();
-                int y=(int) event.getY();
-                if(event.getAction()== MotionEvent.ACTION_UP){
-                    if(y<height){
+                int y = (int) event.getY();
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (y < height) {
                         dismiss();
                     }
                 }

@@ -1,5 +1,6 @@
 package com.study.app.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import com.study.app.bean.MeiRiXueBean;
 import com.study.app.designs.TitleBuilder;
 import com.study.app.divider.DividerItemDecoration;
 import com.study.app.interfaces.ICallback;
+import com.study.app.interfaces.OnItemClickListener;
+import com.study.app.utils.URLUtils;
 import com.study.app.views.ShowingPage;
 
 import java.util.HashMap;
@@ -34,12 +37,13 @@ public class MeiRiXueActivity extends BaseShowingPageActivity implements SpringV
     private TextView meirixue_tv;
     private List<MeiRiXueBean.DataListBean.ListBean> list;
     private MeiRiXueAdapter adapter;
+    private TextView meirixue_name;
 
     @Override
     protected void onLoad() {
         BaseData baseData = new BaseData();
         map.put("aid",url);
-        baseData.postData(false, false, "http://www.meirixue.com", "/api.php?c=activity&a=getActivityBak", BaseData.SHORT_TIME, map, new ICallback() {
+        baseData.postData(false, false, URLUtils.ViewPager_BASEURL, URLUtils.ViewPager_URL, BaseData.SHORT_TIME, map, new ICallback() {
 
             @Override
             public void onResponse(String responseInfo) {
@@ -100,11 +104,21 @@ public class MeiRiXueActivity extends BaseShowingPageActivity implements SpringV
                 return false;
             }
         };
-
+        meirixue_name.setText(viewPagerBean.dataList.get(0).title);
         meirixue_recyclerView.setLayoutManager(linearLayoutManager);
         meirixue_recyclerView.addItemDecoration(new DividerItemDecoration(MeiRiXueActivity.this, LinearLayoutManager.VERTICAL));
         adapter = new MeiRiXueAdapter(this, list);
         meirixue_recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(MeiRiXueActivity.this,DetailsActivity.class);
+                String cid = viewPagerBean.dataList.get(0).list.get(position).cid;
+                intent.putExtra("url",cid);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initView(View view) {
@@ -112,6 +126,7 @@ public class MeiRiXueActivity extends BaseShowingPageActivity implements SpringV
         meirixue_img = (ImageView) view.findViewById(R.id.meirixue_img);
         meirixue_springView = (SpringView) view.findViewById(R.id.meirixue_springView);
         meirixue_tv = (TextView) view.findViewById(R.id.meirixue_tv);
+        meirixue_name = (TextView) view.findViewById(R.id.meirixue_name);
     }
 
     @Override

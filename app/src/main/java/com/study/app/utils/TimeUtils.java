@@ -3,7 +3,7 @@ package com.study.app.utils;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by zhiyuan on 17/1/8.
+ * Created by 郭艳杰 on 17/1/8.
  */
 
 public class TimeUtils {

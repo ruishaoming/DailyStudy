@@ -16,7 +16,6 @@ import java.util.Random;
 public class StepView extends View {
 
     private Random random;
-    String text = "默认文字";
 
     public StepView(Context context) {
         super(context);
@@ -51,16 +50,8 @@ public class StepView extends View {
         paint.setDither(true);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(getMeasuredWidth()/2,getMeasuredHeight()/2,getMeasuredHeight()/2,paint);
-//        Rect rect = new Rect();
-//        paint.setTextSize(20);
-//        paint.getTextBounds(text,0,text.length(),rect);
-//        paint.setColor(Color.RED);
-//        canvas.drawText(text,getMeasuredWidth()/2-rect.width()/2,getMeasuredHeight()/2+rect.height()/2,paint);
 
 
-    }
-    public void setText(String text){
-        this.text = text;
     }
 
 }

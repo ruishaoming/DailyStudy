@@ -1,8 +1,8 @@
 package com.study.app.designs;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 
+import com.study.app.fragment.CatalogFragment;
 import com.study.app.fragment.CommentFragment;
 import com.study.app.fragment.ParticularsFragment;
 
@@ -27,7 +27,7 @@ public class CourseInfoFragmentFactory {
                 fragment = new ParticularsFragment();
                 break;
             case 1:
-                fragment = new ListFragment();
+                fragment = new CatalogFragment();
                 break;
             case 2:
                 fragment = new CommentFragment();

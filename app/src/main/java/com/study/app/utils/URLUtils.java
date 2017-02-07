@@ -1,8 +1,6 @@
 package com.study.app.utils;
 
 
-import java.net.URL;
-
 public class URLUtils {
 
     //基础的ＵＲＬ
@@ -28,20 +26,32 @@ public class URLUtils {
     请求参数 a=indexv9   c=index
 
     */
-    public static final String Home_URL = "http://www.meirixue.com/api.php";
+    public static final String Home_BASEURL = "http://www.meirixue.com";
+    public static final String Home_URL = "/api.php";
+
     /*
     * 首页轮播图点击详情/post请求
     * 请求参数 aid=17
     * */
-    public static final String ViewPager_URL = "http://www.meirixue.com/api.php?c=activity&a=getActivityBak";
-    // http://www.meirixue.com/api.php?c=course&a=getCourseInf
+    public static final String ViewPager_BASEURL = "http://www.meirixue.com";
+    public static final String ViewPager_URL = "/api.php?c=activity&a=getActivityBak";
+
+    // http://www.meirixue.com/api.php?c=course&a=getCourseInfo
     /*
+    课程详情
     * post 请求
     * 请求参数 courseid=5221
     * */
-    public static final String Course_URL = "http://www.meirixue.com/api.php?c=course&a=getCourseInf";
-    //http://www.meirixue.com/api.php?c=course&a=getCourseCommenttV2
-    //http://www.meirixue.com/api.php?c=course&a=getCourseStep
+    public static final String Course_BASEURL = "http://www.meirixue.com";
+    public static final String Course_URL = "/api.php?c=course&a=getCourseInfo";
+     /*
+     目录
+    * post 请求
+    * 请求参数 courseid=5252
+    * */
+    public static final String CATELOG_BASEURL = "http://www.meirixue.com";
+    public static final String CATELOG_URL = "/api.php?c=course&a=getCourseStep";
+
     //http://www.meirixue.com/api.php?c=course&a=getCourseDesc
     //登录接口/post
     /**

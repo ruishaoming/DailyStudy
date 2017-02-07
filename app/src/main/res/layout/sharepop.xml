@@ -4,48 +4,53 @@
     android:layout_height="match_parent"
     android:id="@+id/pop_layout"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="选择分享方式"
-        android:gravity="center_horizontal"
-        android:padding="30px"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30px">
-        <TextView
-            android:id="@+id/tv_qq"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/login_qq"
-           android:gravity="center"
-            android:text="QQ好友"/>
+        android:layout_marginTop="30px"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_weixin"
             android:layout_width="0px"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/login_weixin"
+            android:drawableTop="@mipmap/umeng_socialize_wechat"
             android:gravity="center"
-            android:text="微信好友"/>
+            android:text="微信"/>
+        <TextView
+            android:id="@+id/tv_friend"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/umeng_socialize_wxcircle"
+            android:gravity="center"
+            android:text="朋友圈"/>
+
+        <TextView
+            android:id="@+id/tv_qzone"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/umeng_socialize_qzone_on"
+            android:gravity="center"
+            android:text="QQ空间"/>
         <TextView
             android:id="@+id/tv_sina"
             android:layout_width="0px"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/login_sina"
+            android:drawableTop="@mipmap/umeng_socialize_sina_on"
             android:gravity="center"
             android:text="微博"/>
     </LinearLayout>
-
 <TextView
-    android:id="@+id/cancel"
+    android:id="@+id/tv_qq"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="取消"
-    android:textColor="#f89"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginTop="60px"/>
+    android:drawableTop="@mipmap/umeng_socialize_qq_on"
+    android:gravity="center"
+    android:layout_marginLeft="35px"
+    android:text="QQ"/>
+
 </LinearLayout>

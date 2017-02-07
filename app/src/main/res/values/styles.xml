@@ -10,4 +10,8 @@
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/quan_tablayout_tv</item>
     </style>
+    <style name="take_photo_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@animator/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@animator/pop_exit_anim</item>
+    </style>
 </resources>

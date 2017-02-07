@@ -1,7 +1,5 @@
 package com.study.app.fragment;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -9,24 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.study.app.R;
-import com.study.app.application.MyApplication;
-import com.study.app.base.BaseData;
 import com.study.app.base.BaseFragment;
 import com.study.app.designs.QuanFragmentFactory;
 import com.study.app.designs.TitleBuilder;
-import com.study.app.interfaces.ICallback;
-import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.utils.CommonUtils;
-import com.study.app.utils.NetUtils;
 import com.study.app.views.ShowingPage;
 
 /**

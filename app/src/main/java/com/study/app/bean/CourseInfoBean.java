@@ -63,7 +63,7 @@ public class CourseInfoBean {
         public String school_small_log;
         public String school_score;
         public String commentcount;
-        public int goodrate;
+        public String goodrate;
         public int isbuy;
         public int iscollect;
         public int iscomment;

@@ -41,7 +41,7 @@ public class TopicActivity extends BaseActivity {
     private String nid;
     private String[] titles = {"最新", "最热"};
     private ImageView image_bg;
-    public AppBarLayout appBarLayout;
+    public static AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

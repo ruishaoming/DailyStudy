@@ -42,7 +42,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     //SpringView下拉刷新
-    compile 'com.liaoinstan.springview:library:1.2.6'
+    compile 'com.liaoinstan.springview:library:1.2.6' 
     //Banner无限轮播
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.youth.banner:banner:1.4.4'

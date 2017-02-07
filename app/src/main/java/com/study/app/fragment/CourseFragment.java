@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.study.app.R;
@@ -19,11 +17,9 @@ import com.study.app.designs.TitleBuilder;
 import com.study.app.interfaces.ICallback;
 import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.utils.CommonUtils;
-import com.study.app.utils.LogUtils;
 import com.study.app.utils.NetUtils;
+import com.study.app.utils.URLUtils;
 import com.study.app.views.ShowingPage;
-
-import static com.study.app.R.id.elv;
 
 /**
  * 课程分类
@@ -38,6 +34,7 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
     private int mCurrentGroupPosition = -1; //默认全关闭
     private SortBean[] sortBean;
     private ElvAdapter elvadapter;
+    private boolean tag=true;
 
     @Override
     public void onAttach(Context context) {
@@ -82,12 +79,12 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
      */
     @Override
     protected void createTitleView(ShowingPage showingPage) {
-        new TitleBuilder(showingPage).setTitleBackGroundColor(Color.RED).setMiddleText("Course中间", 20).setMiddleTextListener(new View.OnClickListener() {
+        new TitleBuilder(showingPage).setTitleBackGroundRes(R.color.colorPrimary).setMiddleText("全部分类", 0).setRightImageRes(R.mipmap.glass).setMostRightImageListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Course", Toast.LENGTH_SHORT).show();
+
             }
-        });
+        }).build();
     }
 
     /**
@@ -105,12 +102,21 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
 
         BaseData b = new BaseData();
         //http://www.meirixue.com/api.php?c=category&a=getall
-        b.getData("http://www.meirixue.com/", "http://www.meirixue.com/api.php?c=category&a=getall", BaseData.LONG_TIME, new ICallback() {
+        b.getData(URLUtils.BASE_URL, URLUtils.COURSELIST_RUL, BaseData.LONG_TIME, new ICallback() {
             @Override
             public void onResponse(String responseInfo) {
                 sortBean = new Gson().fromJson(responseInfo, SortBean[].class);
                 elvadapter = new ElvAdapter(getContext(), sortBean);
                 elv.setAdapter(elvadapter);
+                //设置首次进入程序  二级列表  子条目的第一个条目为展开
+                if (tag) {
+                    //设置一个默认的展开
+                    sortBean[0].setClose(true);
+                    elv.expandGroup(0);
+                    tag = false;
+                }
+                //打开点击的自条目 关闭已经展开的其他条目
+                onGroupExpandListener();
                 //group点击事件
                 elv.setOnGroupClickListener(CourseFragment.this);
                 //children点击事件
@@ -123,6 +129,21 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
             public void onFailure(String errorInfo) {
                 //设置失败的视图
                 showCurrentPage(ShowingPage.StateType.STATE_LOAD_ERROR);
+            }
+        });
+    }
+
+    private void onGroupExpandListener() {
+        elv.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+
+                // elv是列表实例，通过判断它的状态，关闭已经展开的。
+                for (int i = 0; i < 6; i++) {
+                    if (groupPosition != i && elv.isGroupExpanded(i)) {
+                        elv.collapseGroup(i);
+                    }
+                }
             }
         });
     }
@@ -148,12 +169,12 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
         }
 
         //二级列表条目点击隐藏设置
-        hideElv(groupPosition);
+        //hideElv(groupPosition);
 
         //刷新适配器
         elvadapter.notifyDataSetChanged();
         //消费事件
-        return true;
+        return false;
     }
 
     //二级列表点击事件
@@ -161,41 +182,42 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         return false;
     }
+    //此方法有BUG
 
-    private void hideElv(int groupPosition) {
-        if (mCurrentGroupPosition == -1) {
-            //等于-1 --> 没有任何组打开
-
-            //展开组
-            elv.expandGroup(groupPosition);
-            //设置第一个位置是那个组
-            elv.setSelectedGroup(groupPosition);
-            //重新对记录进行赋值
-            mCurrentGroupPosition = groupPosition;
-
-        } else {
-            //不等于-1 --> 代表以前有组打开
-
-            if (groupPosition == mCurrentGroupPosition) {
-                //如果当前点击的是以前打开过的组,那么就关闭它
-                elv.collapseGroup(groupPosition);
-
-                //记录回到最初
-                mCurrentGroupPosition = -1;
-            } else {
-                //如果当前点击的不是以前打开过的组,而是其他组
-
-                //关闭以前的组
-                elv.collapseGroup(mCurrentGroupPosition);
-                //展开当前点击的组
-                elv.expandGroup(groupPosition);
-                //设置第一个位置是那个组
-                elv.setSelectedGroup(groupPosition);
-
-                //重新对记录进行赋值
-                mCurrentGroupPosition = groupPosition;
-            }
-
-        }
-    }
+//    private void hideElv(int groupPosition) {
+//        if (mCurrentGroupPosition == -1) {
+//            //等于-1 --> 没有任何组打开
+//
+//            //展开组
+//            elv.expandGroup(groupPosition);
+//            //设置第一个位置是那个组
+//            elv.setSelectedGroup(groupPosition);
+//            //重新对记录进行赋值
+//            mCurrentGroupPosition = groupPosition;
+//
+//        } else {
+//            //不等于-1 --> 代表以前有组打开
+//
+//            if (groupPosition == mCurrentGroupPosition) {
+//                //如果当前点击的是以前打开过的组,那么就关闭它
+//                elv.collapseGroup(groupPosition);
+//
+//                //记录回到最初
+//                mCurrentGroupPosition = -1;
+//            } else {
+//                //如果当前点击的不是以前打开过的组,而是其他组
+//
+//                //关闭以前的组
+//                elv.collapseGroup(mCurrentGroupPosition);
+//                //展开当前点击的组
+//                elv.expandGroup(groupPosition);
+//                //设置第一个位置是那个组
+//                elv.setSelectedGroup(groupPosition);
+//
+//                //重新对记录进行赋值
+//                mCurrentGroupPosition = groupPosition;
+//            }
+//
+//        }
+//    }
 }

@@ -107,6 +107,7 @@ public class HotFragment extends BaseFragment {
         });
     }
 
+    //初始化Title
     private void initTitle(final HotTitltInfo hotTitltInfo) {
         for (int i = 0; i < hotTitltInfo.getData().size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(hotTitltInfo.getData().get(i).getName()));
@@ -114,7 +115,7 @@ public class HotFragment extends BaseFragment {
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return HotTypeFragment.getTitleFromHot(hotTitltInfo.getData().get(position).getName());
+                return HotTypeFragment.getTitleTid(hotTitltInfo.getData().get(position).getTid());
             }
 
             @Override

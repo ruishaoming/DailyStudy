@@ -34,6 +34,7 @@ import com.study.app.interfaces.IOnResetShowingPage;
 import com.study.app.interfaces.OnItemClickListener;
 import com.study.app.utils.CommonUtils;
 import com.study.app.utils.NetUtils;
+import com.study.app.utils.URLUtils;
 import com.study.app.views.MyGridView;
 import com.study.app.views.ShowingPage;
 import com.zhy.adapter.abslistview.CommonAdapter;
@@ -147,12 +148,12 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
 
     //初始化数据
     private void getData() {
-    //网络请求
+        //网络请求
         BaseData baseData = new BaseData();
         map.put("a", "indexv9");
         map.put("c", "index");
-    // a=indexv9&c=index
-        baseData.postData(false, false, "http://www.meirixue.com", "/api.php", BaseData.SHORT_TIME, map, new ICallback() {
+        // a=indexv9&c=index
+        baseData.postData(false, false, URLUtils.Home_BASEURL, URLUtils.Home_URL, BaseData.SHORT_TIME, map, new ICallback() {
             @Override
             public void onResponse(String responseInfo) {
                 //得到请求的数据并解析
@@ -234,7 +235,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         gv_recommend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getActivity(),DetailsActivity.class);
+                Intent intent = new Intent(getActivity(),DetailsActivity.class);
                 intent.putExtra("url",topList.get(position).cid);
                 startActivity(intent);
             }

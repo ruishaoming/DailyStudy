@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.study.app.R;
@@ -31,7 +32,6 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
 
     private boolean CourseFragment_isOnlineAndHasNet = true;
     private ExpandableListView elv;
-    private int mCurrentGroupPosition = -1; //默认全关闭
     private SortBean[] sortBean;
     private ElvAdapter elvadapter;
     private boolean tag=true;
@@ -79,7 +79,7 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
      */
     @Override
     protected void createTitleView(ShowingPage showingPage) {
-        new TitleBuilder(showingPage).setTitleBackGroundColor(Color.RED).setMiddleText("全部分类", 40).setRightImageRes(R.mipmap.glass).setMostRightImageListener(new View.OnClickListener() {
+        new TitleBuilder(showingPage).setTitleBackGroundColor(Color.RED).setMiddleText("全部分类", 30).setRightImageRes(R.mipmap.glass).setMostRightImageListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -101,7 +101,6 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
     private void getData() {
 
         BaseData b = new BaseData();
-        //http://www.meirixue.com/api.php?c=category&a=getall
         b.getData(URLUtils.BASE_URL, URLUtils.COURSELIST_RUL, BaseData.LONG_TIME, new ICallback() {
             @Override
             public void onResponse(String responseInfo) {
@@ -178,7 +177,8 @@ public class CourseFragment extends BaseFragment implements ExpandableListView.O
     //二级列表点击事件
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-        return false;
+        Toast.makeText(getActivity(),"~~"+childPosition,Toast.LENGTH_SHORT).show();
+        return true;
     }
     //此方法有BUG
 

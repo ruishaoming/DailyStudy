@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b3b3b3"
+    android:orientation="vertical">
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+
+            android:textSize="30px"
+            android:padding="10px"
+            android:text="综合排序"
+            android:textColor="@color/main_bottom_tv_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_order1" />
+        <TextView
+           android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="2px" />
+        <TextView
+            android:id="@+id/tv_order2"
+            android:textSize="30px"
+            android:text="最近更新"
+            android:padding="10px"
+            android:textColor="@color/main_bottom_tv_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="2px" />
+        <TextView
+            android:textSize="30px"
+            android:text="学习人数"
+            android:padding="10px"
+            android:id="@+id/tv_order3"
+            android:textColor="@color/main_bottom_tv_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>

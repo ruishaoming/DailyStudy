@@ -25,6 +25,7 @@
             android:value="1280" />
 
         <activity android:name=".activity.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +35,14 @@
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.CourseInfoActivity"></activity>
+        <activity android:name=".activity.CourseInfoActivity" />
+        <activity android:name=".activity.CourseActivity" />
+        <activity android:name=".windowactivity.NameActivity" />
+        <activity android:name=".windowactivity.ChooseActivity" />
+        <activity android:name=".windowactivity.OrderActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -10,4 +10,5 @@
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/quan_tablayout_tv</item>
     </style>
+
 </resources>

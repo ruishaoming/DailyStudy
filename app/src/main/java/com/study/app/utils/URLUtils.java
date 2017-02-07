@@ -7,8 +7,12 @@ public class URLUtils {
     public static final String BASE_URL = "http://www.meirixue.com/";
     //分类页面的数据
     public static final String COURSELIST_RUL = "http://www.meirixue.com/api.php?c=category&a=getall";
+    //分类页面的post数据
+    public static final String COURSELIST_RUL_POST =" /api.php?c=list&a=index";
     //圈子----话题/get请求
     public static final String TOPIC_URL= "http://www.meirixue.com/api.php?c=circle&a=getCircleNamesIndexV2";
+    // 三级分类的数据
+    public static final String THREECOURSE_URL= "http://www.meirixue.com/api.php?c=category&a=getTree";
 
     /**
      * 圈子----热门/post请求

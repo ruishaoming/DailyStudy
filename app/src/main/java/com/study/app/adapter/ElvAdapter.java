@@ -1,16 +1,20 @@
 package com.study.app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.study.app.R;
+import com.study.app.activity.CourseActivity;
 import com.study.app.bean.SortBean;
 import com.study.app.utils.CommonUtils;
 
@@ -154,6 +158,20 @@ public class ElvAdapter extends BaseExpandableListAdapter {
                 return view1;
             }
 
+        });
+        //二级列表子条目点击事件
+        gv_elv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String id1 = sortBean[groupPosition].getNodes().get(position).getId();
+                String category_name = sortBean[groupPosition].getNodes().get(position).getCategory_name();
+                Intent intent=new Intent(context,CourseActivity.class);
+                intent.putExtra("id",id1);
+                intent.putExtra("name",category_name);
+                context.startActivity(intent);
+
+                Toast.makeText(context,"~~~~~"+id1,Toast.LENGTH_SHORT).show();
+            }
         });
 
         return view;

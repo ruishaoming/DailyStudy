@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -15,16 +17,20 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.widget.SpringView;
+
 import com.study.app.R;
 import com.study.app.base.BaseData;
 import com.study.app.base.BaseFragment;
 import com.study.app.bean.HotInfo;
+import com.study.app.bean.LableBean;
 import com.study.app.interfaces.ICallback;
+import com.study.app.utils.CommonUtils;
 import com.study.app.utils.URLUtils;
 import com.study.app.views.HidingScrollListener;
 import com.study.app.views.MyHeader;
@@ -107,14 +113,12 @@ public class HotTypeFragment extends BaseFragment implements SpringView.OnFreshL
     private void initData(final HotInfo hotInfo) {
 
         listAll.addAll(hotInfo.getData());
-        if (adapter == null) {
+//        if (adapter == null) {
 
             adapter = new CommonAdapter<HotInfo.DataBean>(getActivity(), R.layout.hot_type_rv_item, listAll) {
 
                 @Override
                 protected void convert(ViewHolder holder, HotInfo.DataBean dataBean, int position) {
-
-                    holder.setText(R.id.p_title_tv, dataBean.getP_title());             //标题
 
                     //查找控件
                     CircleImageView user_small_log_image = holder.getView(R.id.user_small_log_image);       //用户头像
@@ -135,6 +139,7 @@ public class HotTypeFragment extends BaseFragment implements SpringView.OnFreshL
                     ImageView image_right = holder.getView(R.id.image_right);
                     image_left.setScaleType(ImageView.ScaleType.FIT_XY);//右边图
                     image_right.setScaleType(ImageView.ScaleType.FIT_XY);//右边图
+                    Gson gson = new Gson();
 
                     ImageView large_image = holder.getView(R.id.large_image);                               //一张大图
                     large_image.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -143,7 +148,7 @@ public class HotTypeFragment extends BaseFragment implements SpringView.OnFreshL
                     //判断数据是否为空
                     if (!TextUtils.isEmpty(source)) {
                         //解析数据
-                        Gson gson = new Gson();
+                      //  Gson gson = new Gson();
                         String[] imageArray = gson.fromJson(source, String[].class);
                         if (imageArray.length >= 3) {
                             two_linearLayout.setVisibility(View.GONE);
@@ -167,19 +172,27 @@ public class HotTypeFragment extends BaseFragment implements SpringView.OnFreshL
                     }
 
                     holder.setText(R.id.p_title_tv, dataBean.getP_title());                   //设置title
-//                    holder.setText(R.id.p_content_tv, dataBean.getP_content());               //设置content
-                    holder.setText(R.id.p_tids_tv, dataBean.getP_tids());                     //设置tids
+                    //holder.setText(R.id.p_content_tv,dataBean.p_content);               //设置content
+                    //  holder.setText(R.id.p_tids_tv, dataBean.p_tids);                     //设置tids
+
+                /*标签*/
+                    TextView p_tids_tv = holder.getView(R.id.p_tids_tv);
+                    String p_tids = dataBean.getP_tids();
+                    Spanned spanned = Html.fromHtml(p_tids);
+                    LableBean[] lableBeen = gson.fromJson(spanned.toString(), LableBean[].class);
+                    p_tids_tv.setText("#"+lableBeen[0].getTname()+"#");
+
                     holder.setText(R.id.dianzan_tv, dataBean.getP_dig());
                     holder.setText(R.id.share_tv, dataBean.getP_sharecount());
                     holder.setText(R.id.message_tv, dataBean.getP_replycount());
                 }
             };
             mRecyclerView.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
-
-        setFabAnim();
+//        } else {
+//            adapter.notifyDataSetChanged();
+//        }
+        CommonUtils.setFabAnim(getActivity(),mRecyclerView,mFloatBtn);
+//        setFabAnim();
     }
 
     //设置FloatingButton显示 隐藏的动画

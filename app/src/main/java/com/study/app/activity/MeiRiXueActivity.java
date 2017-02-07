@@ -73,7 +73,7 @@ public class MeiRiXueActivity extends BaseShowingPageActivity implements SpringV
             public void onClick(View v) {
                 finish();
             }
-        }).setMiddleImageRes(R.mipmap.meirixue).setMostRightImageRes(R.mipmap.abc_ic_search_api_mtrl_alpha).setMostRightImageListener(new View.OnClickListener() {
+        }).setMiddleImageRes(R.mipmap.meirixue).setMostRightImageRes(R.mipmap.forwarding).setMostRightImageListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

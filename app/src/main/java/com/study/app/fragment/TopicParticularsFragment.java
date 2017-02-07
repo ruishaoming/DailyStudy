@@ -85,6 +85,9 @@ public class TopicParticularsFragment extends BaseFragment implements SpringView
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //设置MyTopicDetail中appBarLayout的监听事件
+        if(TopicActivity.appBarLayout!=null)
+            TopicActivity.appBarLayout.addOnOffsetChangedListener(this);
         getData();
     }
 
@@ -173,7 +176,6 @@ public class TopicParticularsFragment extends BaseFragment implements SpringView
                 image_left.setScaleType(ImageView.ScaleType.FIT_XY);//右边图
                 image_right.setScaleType(ImageView.ScaleType.FIT_XY);//右边图
                 Gson gson = new Gson();
-
 
                 ImageView large_image = holder.getView(R.id.large_image);                               //一张大图
                 large_image.setScaleType(ImageView.ScaleType.FIT_XY);

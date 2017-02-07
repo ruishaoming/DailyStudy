@@ -3,15 +3,12 @@ package com.study.app.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.study.app.R;
@@ -20,13 +17,9 @@ import com.study.app.base.BaseFragment;
 import com.study.app.bean.HotTitltInfo;
 import com.study.app.interfaces.ICallback;
 import com.study.app.interfaces.IOnResetShowingPage;
-import com.study.app.utils.CommonUtils;
-import com.study.app.utils.LogUtils;
 import com.study.app.utils.NetUtils;
 import com.study.app.utils.URLUtils;
 import com.study.app.views.ShowingPage;
-
-import java.util.HashMap;
 
 /**
  * Created by 芮靖林
@@ -107,6 +100,7 @@ public class HotFragment extends BaseFragment {
         });
     }
 
+    //初始化Title
     private void initTitle(final HotTitltInfo hotTitltInfo) {
         for (int i = 0; i < hotTitltInfo.getData().size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(hotTitltInfo.getData().get(i).getName()));
@@ -114,7 +108,7 @@ public class HotFragment extends BaseFragment {
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return HotTypeFragment.getTitleFromHot(hotTitltInfo.getData().get(position).getName());
+                return HotTypeFragment.getTitleTid(hotTitltInfo.getData().get(position).getTid());
             }
 
             @Override

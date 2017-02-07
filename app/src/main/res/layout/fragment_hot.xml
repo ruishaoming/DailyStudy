@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="#000"
-        app:tabMode="scrollable"
+        android:background="@mipmap/recommend_tab_bg"
         app:tabIndicatorColor="@color/hot_tab_selected"
+        app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/hot_tab_selected"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         app:tabTextColor="@color/white"></android.support.design.widget.TabLayout>

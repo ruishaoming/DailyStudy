@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_course_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_layout"></include>
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Details_springView">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/course_info_img"
+            android:layout_width="500px"
+            android:layout_height="300px"
+            android:padding="40px"/>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="40px">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/course_info_name"
+                android:text="123"
+                android:textColor="@color/black"
+                android:textSize="@dimen/main_activity_bottom_tv"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/course_info_price"
+                android:textColor="@color/colorPrimary"
+                android:text="123"
+                android:layout_marginTop="150px"
+                android:textSize="25px"/>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/course_info"
+        android:padding="20px">
+        <TextView
+            android:id="@+id/course_sum"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="总课时:"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/main_activity_title_tv"/>
+        <TextView
+            android:id="@+id/course_comment"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="评分:"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/main_activity_title_tv"/>
+        <TextView
+            android:id="@+id/course_read_count"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="167人学:"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/main_activity_title_tv"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/course_info_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextColor="#000"
+        app:tabSelectedTextColor="#f00"
+        app:tabIndicatorColor="#f00"
+        android:background="@color/white"
+        app:tabMode="scrollable"
+        android:layout_gravity="center_horizontal"
+        >
+
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_info_viewPager">
+
+    </android.support.v4.view.ViewPager>
+    </com.liaoinstan.springview.widget.SpringView>
+</LinearLayout>

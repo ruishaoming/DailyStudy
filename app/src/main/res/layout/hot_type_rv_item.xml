@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#EEEEEEEE">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_small_log_image"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_margin="20px" />
+
+        <TextView
+            android:id="@+id/user_name_tv"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/hot_content" />
+
+        <CheckBox
+            android:id="@+id/attention_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="40px"
+            android:button="@null"
+            android:background="@drawable/attention_selector" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/three_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/left_image"
+                android:layout_width="0px"
+                android:layout_height="250px"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/middle_image"
+                android:layout_width="0px"
+                android:layout_height="250px"
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/right_image"
+                android:layout_width="0px"
+                android:layout_height="250px"
+                android:layout_weight="1" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/two_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/image_left"
+                android:layout_width="0px"
+                android:layout_height="250px"
+                android:layout_marginRight="10px"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/image_right"
+                android:layout_width="0px"
+                android:layout_height="250px"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <ImageView
+            android:id="@+id/large_image"
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            android:visibility="gone"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:id="@+id/p_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:textColor="@color/black"
+        android:textSize="@dimen/hot_content" />
+
+    <TextView
+        android:id="@+id/p_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:textColor="@color/hot_content"
+        android:textSize="@dimen/hot_content" />
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10px">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/topic_label" />
+
+        <TextView
+            android:id="@+id/p_tids_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10px"
+            android:textColor="@color/hot_content"
+            android:textSize="@dimen/hot_content"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"/>
+
+    <include layout="@layout/hot_type_dianzan_include"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"/>
+</com.zhy.autolayout.AutoLinearLayout>

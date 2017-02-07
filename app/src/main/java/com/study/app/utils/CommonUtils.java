@@ -9,11 +9,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.study.app.R;
 import com.study.app.application.MyApplication;
+import com.study.app.views.HidingScrollListener;
 
 
 public class CommonUtils {
@@ -139,5 +148,31 @@ public class CommonUtils {
     public static void finishActivity(Activity activity) {
         activity.finish();
         activity.overridePendingTransition(R.anim.xin_left, R.anim.xout_right);
+    }
+
+    public static String getText(TextView v) {
+        return v.getText().toString().trim();
+    }
+
+    //设置FloatingButton显示 隐藏的动画
+    public static void setFabAnim(final Context context, RecyclerView recyclerView, final FloatingActionButton floatingActionButton) {
+        recyclerView.addOnScrollListener(new HidingScrollListener() {
+            @Override
+            public void onHide() {
+                Resources resources = context.getResources();
+                DisplayMetrics dm = resources.getDisplayMetrics();
+                int height = dm.heightPixels;
+                floatingActionButton.animate()
+                        .translationY(height - floatingActionButton.getHeight())
+                        .setInterpolator(new AccelerateInterpolator(2))
+                        .setDuration(500)
+                        .start();
+            }
+
+            @Override
+            public void onShow() {
+                floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).setDuration(500).start();
+            }
+        });
     }
 }

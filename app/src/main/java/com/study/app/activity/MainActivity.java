@@ -75,13 +75,18 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                vp.setOffscreenPageLimit(3);
+            }
+        });
     }
 
     //初始化控件
     private void initViews() {
         radioGroup = (RadioGroup) findViewById(R.id.main_bottom_rg);
         vp = (LazyViewPager) findViewById(R.id.main_vp);
-        vp.setOffscreenPageLimit(1);
     }
 
     //监听连续两次返回退出
